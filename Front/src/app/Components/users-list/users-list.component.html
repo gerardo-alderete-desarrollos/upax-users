@@ -1,0 +1,29 @@
+    
+    <div class="container-user">
+        <div class="title" [ngStyle]="{'background-color': color}" >
+            <span class="title-align" [ngStyle]="{'right': right}">
+                {{title}}
+            </span>
+        </div>
+        <div class="contianer-list">
+            <span *ngFor="let u of usuarios" class="user" (click)="userSelectedMethod(u)" [ngClass]="{'user-delete': (activeUser === 'true' || activeUser === true)}">
+              
+                <div [ngClass]="{'content-user-delete': (activeUser === 'true' || activeUser === true)}">
+                        
+                    {{u.nombre}}
+                    <div class="example-button-container" *ngIf="(activeUser === 'true' || activeUser === true)">
+                        <button 
+                            mat-mini-fab color="primary"
+                            aria-label="Example icon button with a plus one icon"
+                            [matTooltip]="languagueGlobal.reactiveUserTooltip"
+                            [matTooltipPosition]="position.value"
+                            matTooltipHideDelay="1500"
+                            (click)="reactiveUser(u)"
+                        >
+                        <mat-icon>plus_one</mat-icon> 
+                        </button>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>

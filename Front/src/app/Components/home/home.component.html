@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <span>{{userLoged.nombre}}</span>
+          <div class="container-right">
+        <mat-form-field class="align-languague">
+          <mat-label>{{languagueGlobal.languague}}</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let languague of languagues" [value]="languague" (click)="changeLanguague(languague)">
+              {{languague}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+                   <mat-icon>voicemail</mat-icon>
+                <span>{{languagueGlobal.logout}}</span>
+           </button>
+       </mat-menu>
+    </div>
+   </mat-toolbar-row> 
+</mat-toolbar>
+
+<div class="container-users">
+  <app-users-list activeUser="false" color="#ff5252" [title]="languagueGlobal.registeredUsers" [usuarios]="usuariosActivos" (userSelected)="userEmit($event)"></app-users-list>
+  <app-users-list activeUser="true" color="#42a5f5" [title]="languagueGlobal.deletedUsers" [usuarios]="usuariosInactivos" (usuarioReactive)="userReactiveEmit($event)"></app-users-list>
+  <app-profile color="#00796b" [title]="languagueGlobal.profile" right="-254px" [usuario]="userSelect" (usuarioEditado)="usuarioEditado($event)"></app-profile>
+</div>

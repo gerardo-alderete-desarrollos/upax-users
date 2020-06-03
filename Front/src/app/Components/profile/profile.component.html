@@ -1,0 +1,40 @@
+<div class="container-user">
+    <div class="title" [ngStyle]="{'background-color': color}" >
+        <span class="title-align" [ngStyle]="{'right': right}">
+            {{title}}
+        </span>
+    </div>
+    <div class="contianer-list">
+        <div class="image-container">
+            <img src="../../../assets/img_avatar.png" alt="Avatar" class="avatar">
+        </div>
+        <form [formGroup]="formCheckin" class="container-form">
+            <mat-form-field appearance="fill" class="input-weight">
+                <mat-label>{{languagueGlobal.user}}</mat-label>
+                <input matInput type="text" formControlName="user">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input-weight">
+                <mat-label>{{languagueGlobal.password}}</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input-weight">
+                <mat-label>{{languagueGlobal.email}}</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" >
+            </mat-form-field>
+            <button [disabled]="!formCheckin.valid" mat-raised-button color="primary" class="save-button" (click)="edit()">{{languagueGlobal.save}}</button>
+            <div class="delete-container">
+                <button mat-fab color="warn"
+                    (click)="deleteUser()" 
+                    [matTooltip]="languagueGlobal.deleteUserTooltip"
+                    [matTooltipPosition]="position.value"
+                    matTooltipHideDelay="1500"
+                    aria-label="Button that displays a tooltip that hides when scrolled out of the container">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

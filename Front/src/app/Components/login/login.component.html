@@ -1,0 +1,73 @@
+
+<div class="align-login">
+    <mat-form-field class="align-languague">
+      <mat-label>{{languagueGlobal.languague}}</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let languague of languagues" [value]="languague" (click)="changeLanguague(languague)">
+          {{languague}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-card class="example-card"  *ngIf="isLogin">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{languagueGlobal.login}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="https://www.pyme.es/wp-content/uploads/2019/03/DvMZerOUcAExtBa-696x348.jpg" alt="UPAX logo">
+      <mat-card-content>
+        <form [formGroup]="formLogin" class="example-container">
+            <mat-form-field appearance="fill" class="input-weight">
+                <mat-label>{{languagueGlobal.emailOrUser}}</mat-label>
+                <input matInput type="text" formControlName="email">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input-weight">
+                <mat-label>{{languagueGlobal.password}}</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-flat-button  class="float-left" (click)="changeLoginCheckin(false)">{{languagueGlobal.checkin}}</a>
+        <button [disabled]="!formLogin.valid" mat-raised-button color="primary" class="float-rigth" (click)="login()">{{languagueGlobal.in}}</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="example-card"  *ngIf="!isLogin">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{languagueGlobal.checkin}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="https://www.pyme.es/wp-content/uploads/2019/03/DvMZerOUcAExtBa-696x348.jpg" alt="UPAX logo">
+            <mat-card-content>
+              <form [formGroup]="formCheckin" class="example-container">
+                <mat-form-field appearance="fill" class="input-weight">
+                    <mat-label>{{languagueGlobal.user}}</mat-label>
+                    <input matInput type="text" formControlName="user">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="input-weight">
+                    <mat-label>{{languagueGlobal.password}}</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="input-weight">
+                    <mat-label>{{languagueGlobal.email}}</mat-label>
+                    <input matInput placeholder="pat@example.com" formControlName="email" >
+                </mat-form-field>
+              </form>
+            </mat-card-content>
+            <mat-card-actions>
+              <a mat-flat-button  class="float-left" (click)="changeLoginCheckin(true)">{{languagueGlobal.login}}</a>
+              <button [disabled]="!formCheckin.valid" mat-raised-button color="primary" class="float-rigth" (click)="checkin()">{{languagueGlobal.save}}</button>
+            </mat-card-actions>
+          </mat-card>
+  </div>
+
+
+
+  
